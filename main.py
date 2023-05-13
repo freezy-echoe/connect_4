@@ -3,6 +3,7 @@ import pygame
 import sys
 import math
 
+# Game rules, instructions, etc.
 DESCRIPTION = ("Connect Four (also known as Connect 4, Four Up, Plot Four, Find Four, "
                "Captain's Mistress, Four in a Row, Drop Four, and Gravitrips) is a"
                " two-player connection rack game, in which the "
@@ -12,29 +13,31 @@ DESCRIPTION = ("Connect Four (also known as Connect 4, Four Up, Plot Four, Find 
                "space within the column. The objective of the game is to be the "
                "first to form a horizontal, vertical, or diagonal line of four "
                "of one's own tokens.")
+# Color identification and assignment
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 
+# Board dimensions
 ROW_COUNT = 6
 COLUMN_COUNT = 7
 SQUARESIZE = 100
 
 buttons = []
 
-
+# Player class with ID and color attributes
 class Player:
     def __init__(self, id, color):
         self.id = id
         self.color = color
 
-
+# Disc class with a player attribute
 class Disc:
     def __init__(self, player):
         self.player = player
 
-
+# Button class for GUI buttons
 class Button:
     def __init__(self, text, width, height, pos, elevation):
         # Core attributes
@@ -92,7 +95,7 @@ class Button:
             self.dynamic_elecation = self.elevation
             self.top_color = '#475F77'
 
-
+# Board class for game board operations
 class Board:
     def __init__(self, row_count, column_count):
         self.row_count = row_count
@@ -166,9 +169,10 @@ class Board:
                                        self.RADIUS)
         pygame.display.update()
 
-
+# Initialize Pygame
 pygame.init()
 
+# Set up game elements
 myfont = pygame.font.SysFont("monospace", 75)
 
 game_board = Board(ROW_COUNT, COLUMN_COUNT)
@@ -184,20 +188,22 @@ details_font = pygame.font.Font(None, 30)
 game_over = False
 turn = 0
 
+# Set up GUI buttons
 startButton = Button('Game Start', 200, 40, (250, 300), 5)
 quitButton = Button('Quit', 200, 40, (250, 350), 5)
 # detailsButton = Button('Details', 200, 40, (250, 450), 5)
 # cancelButton = Button('Cancel', 200, 40, (250, 450), 5)
 
+# Draw initial game board
 game_board.draw_board(screen)
 pygame.display.update()
 
-
+# Function to draw GUI buttons
 def buttons_draw():
     for button in buttons:
         button.draw()
 
-
+# Function to display text on screen
 def text_on_screen(content, font, w, h):
     ''' Renders content with font '''
     fps_surface = font.render(content, 1, pygame.Color("#f78f19"))
@@ -218,13 +224,14 @@ def text_on_screen(content, font, w, h):
     else:
         screen.blit(fps_surface, (w, h))
 
-
+# Main game loop
 while not game_over:
     for event in pygame.event.get():
+        # Exit the game if the user quits
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
+        # Process start button press
         if startButton.pressed:
             game_board.draw_board(screen)
             pygame.display.update()
@@ -239,7 +246,7 @@ while not game_over:
                     pygame.draw.circle(screen, player2.color, (posx, int(
                         SQUARESIZE / 2)), game_board.RADIUS)  # Use game_board.RADIUS
                 pygame.display.update()
-
+            # Handle mouse motion for token placement          
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARESIZE))
                 col = int(math.floor(event.pos[0] / SQUARESIZE))
