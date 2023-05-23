@@ -29,4 +29,10 @@ The game is built using the Pygame library and NumPy for the game logic.
 - Pygame
 - NumPy
 
+## Test PY - has several unit testing functions to:
+
+- Check if a Player object is correctly created with the correct ID and color.
+- Check if a Disc object is correctly related with a Player object.
+- Check if a Board object is correctly created with the correct row and column nubmer count.
+
 Make sure you have the above requirements installed on your system to successfully run the game.
