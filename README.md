@@ -1,6 +1,6 @@
 # Connect Four Game
 
-This is a Python-based implementation of the popular game "Connect Four". The game is played between two players, taking turns to drop colored tokens into a seven-column, six-row vertically suspended grid. The objective of the game is to form a line of four tokens of the same color horizontally, vertically, or diagonally.
+This is a Python-based implementation of the popular game "Connect Four". The game is played between two players, taking turns to drop colored tokens into a seven-column, six-row vertically suspended grid. The objective of the game is to form a line of four discs of the same color horizontally, vertically, or diagonally.
 
 The game is built using the Pygame library and NumPy for the game logic.
 
